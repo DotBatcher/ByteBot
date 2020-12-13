@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const BOTOWNERID = '743153101803880543'
+const BOTOWNERID = ''
 const { Client, Guild } = require('discord.js');
 const client = new Client();
 const PREFIX = "!";
