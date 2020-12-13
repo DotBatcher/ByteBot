@@ -4,7 +4,9 @@ require('dotenv').config();
 
 const BOTOWNERID = '743153101803880543'
 const { Client, Guild } = require('discord.js');
-const client = new Client();
+const client = new Client({
+  partials: ['MESSAGE', 'REACTION']
+});
 const PREFIX = "!";
 client.on('ready', () => {
     console.log('Ready');
@@ -80,3 +82,28 @@ client.on('message', message => {
     }
   }
 });
+
+// elcome to reaction roles
+// quite complicated to set this up, thats why i made it on a seperate branch.
+// anyway, heres a tutorial to using this.
+
+client.on('messageReactionAdd', (reaction, user) => {
+  const { name } = reaction.emoji;
+  const member = reaction.message.guild.members.cache.get(user.id)
+  if (reaction.message.id === '/Replace this with the id of the message you want to have reaction roles for/') {
+    switch (name) {
+      case '/all of these should be the roles, replace all the empty quotes with the ids, if you dont need this many get rid of some, if you need more just copy and paste the code over/':
+        member.roles.add('');
+        break;
+      case '':
+        member.roles.add('')
+        break;
+      case '':
+        member.roles.add('');
+        break;
+      case '':
+        member.roles.add('');
+        break;
+    }
+  }
+})
