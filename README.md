@@ -7,8 +7,8 @@ go onto the ".env" file, open it with notepad or whatever editor
 paste your bot token after (dont delete anything and dont do any spaces, just open and paste)
 save the file
 in src, open the .js file (notepad should work but again any editor)
-find the line of code saying "let isBotOwner = message.author.id == '743153101803880543';"
-replace the numbers at the end with your discord client id (this allows you specificly to shut down the bot)
+find the line of code saying const BOTOWNERID = ''
+add your discord client id to the quotation marks. (this allows you only to shut down the bot)
 make sure you have npm and node.js installed for this part.
-go into command prompt/terminal and cd over to your bot folder
+go into command prompt/terminal and cd over to your bot folder (dont cd into the src folder or the bot wont be able to login)
 to run/rerun after shutting down, just type "node ./src/bot.js"
