@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const BOTOWNERID = ''
+const BOTOWNERID = '743153101803880543'
 const { Client, Guild } = require('discord.js');
 const client = new Client();
 const PREFIX = "!";
@@ -20,6 +20,9 @@ client.on('message', message => {
     message.channel.send('(1.0.1) Hi! im bytebot, im open source and can be hosted anywhere, to customize my prefix change the top line of the code saying const PREFIX = "!" replace the ! with whatever you want!  ')
     }
       if (message.content.startsWith(`${PREFIX}kick`)) {
+          if (!message.member.hasPermission('KICK_MEMBERS')) {
+        return message.channel.send('Insufficient Permissions');
+          }
         const user = message.mentions.users.first();
         if (user) {
           const member = message.guild.member(user);
@@ -51,6 +54,9 @@ client.on('message', message => {
         }
       }
   if (message.content.startsWith(`${PREFIX}ban`)) {
+    if (!message.member.hasPermission('BAN_MEMBERS')) {
+  return message.channel.send('Insufficient Permissions');
+    }
     const user = message.mentions.users.first();
     if (user) {
       const member = message.guild.member(user);
