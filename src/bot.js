@@ -80,3 +80,27 @@ client.on('message', message => {
     }
   }
 });
+
+client.on('messageReactionAdd', (reaction, user) => {
+  const { name } = reaction.emoji;
+  const member = reaction.message.guild.members.cache.get(user.id)
+  if (reaction.message.id === '787546411151261706') {
+    switch (name) {
+      case '🐍':
+        member.roles.add('787539699651969045');
+        break;
+      case '☕':
+        member.roles.add('787539856058351656');
+        break;
+      case '🕸️':
+        member.roles.add('787539914598252544');
+        break;
+      case '🖕':
+        member.roles.add('787539952182624287');
+        break;
+      case '☑️':
+        member.roles.add('786878336794230804');
+        break;
+    }
+  }
+});
