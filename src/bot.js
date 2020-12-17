@@ -81,14 +81,21 @@ client.on('message', message => {
   }
 });
 
+//Welcome to reaction roles
+//ReactionRoles is a seperate branch because you have to change some of the code for it to work, There's probably a way to make this easier but idk how
+
+//Currently the roles are setup to work with my server
+
+//Obviously you arent using my server so youll have to change this to work with yours.
+
 client.on('messageReactionAdd', (reaction, user) => {
   const { name } = reaction.emoji;
   const member = reaction.message.guild.members.cache.get(user.id)
-  if (reaction.message.id === '787546411151261706') {
+  if (reaction.message.id === '787546411151261706') { // This is the id the bot checks for reactions, change this id to your message id
     switch (name) {
-      case '🐍':
-        member.roles.add('787539699651969045');
-        break;
+      case '🐍': // Replace this with the unicode version of the emoji you want, you can get that by doing "\:poop:"
+        member.roles.add('787539699651969045'); // All these are the role ids that are added, again replace this with yours
+        break; //If you dont need this many and you want only 1, 2, 3, or 4 just remove one of the lines, break, member.roles.add, and case. Same thing for more
       case '☕':
         member.roles.add('787539856058351656');
         break;
@@ -103,4 +110,4 @@ client.on('messageReactionAdd', (reaction, user) => {
         break;
     }
   }
-});
+}); // If everything was done correctly this should work. if not well too bad ig
