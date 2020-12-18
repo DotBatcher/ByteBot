@@ -1,21 +1,52 @@
 //setup
 
+
+
 require('dotenv').config();
 
 const BOTOWNERID = '743153101803880543'
 const { Client, Guild } = require('discord.js');
 const client = new Client();
-const PREFIX = "!";
+const PREFIX = '!';
 client.on('ready', () => {
     console.log('Ready');
 });
 
+
+
+//login
 client.login(process.env.DISCORDJS_BOT_TOKEN)
 
+
+//code is all combined
+
+//since it seems your digging through the code, well.. hi
+
+
+
 client.on('message', message => {
+
+  var d = new Date();
+  var n = d.getFullYear();
+  var j = new Date();
+  var g = d.getMonth();
+  var a = new Date();
+  var b = d.getDate();
+  var e = new Date();
+  var p = d.getHours();
+  var c = new Date();
+  var k = d.getMinutes();
+  var h = new Date();
+  var m = d.getSeconds();
+
   if (!message.guild) return;
   let {guild} = message;
-  console.log(`(${guild.name}) (#${message.channel.name}) ${message.author.tag}: ${message.content}`);
+
+  //MsgLog
+  //Name is only for github
+  console.log(`${n}-${g+1}-${b}:${p}:${k}:${m} (${guild.name}) (#${message.channel.name}) ${message.author.tag}: ${message.content}`);
+  
+  
   if (message.content === `${PREFIX}help`) {
     message.channel.send('(1.0.1) Hi! im bytebot, im open source and can be hosted anywhere, to customize my prefix change the top line of the code saying const PREFIX = "!" replace the ! with whatever you want!  ')
     }
@@ -53,6 +84,7 @@ client.on('message', message => {
           message.channel.send('You are not the set bot owner. Access Denied')
         }
       }
+      // This needs to be updated
   if (message.content.startsWith(`${PREFIX}ban`)) {
     if (!message.member.hasPermission('BAN_MEMBERS')) {
   return message.channel.send('Insufficient Permissions');
@@ -81,13 +113,6 @@ client.on('message', message => {
   }
 });
 
-//Welcome to reaction roles
-//ReactionRoles is a seperate branch because you have to change some of the code for it to work, There's probably a way to make this easier but idk how
-
-//Currently the roles are setup to work with my server
-
-//Obviously you arent using my server so youll have to change this to work with yours.
-
 client.on('messageReactionAdd', (reaction, user) => {
   const { name } = reaction.emoji;
   const member = reaction.message.guild.members.cache.get(user.id)
@@ -110,4 +135,4 @@ client.on('messageReactionAdd', (reaction, user) => {
         break;
     }
   }
-}); // If everything was done correctly this should work. if not well too bad ig
+});
