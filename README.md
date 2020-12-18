@@ -1,4 +1,10 @@
 # ByteBot
+
+
+IMPORTANT: 
+   Make sure you install node.js and you have the npm version. This will not work if you dont install node.js
+
+
 A simple bot with the ability to kick, ban, turn itself off, and log the chat
 setup:
 To get the bot up and running, you need to make your own app and bot user, create an app and user here: https://discord.com/developers/applications/
