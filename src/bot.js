@@ -1,9 +1,8 @@
 //setup
 
-
-
 require('dotenv').config();
 
+const Discord = require('discord.js')
 const BOTOWNERID = '743153101803880543'
 const { Client, Guild } = require('discord.js');
 const client = new Client();
@@ -12,17 +11,14 @@ client.on('ready', () => {
     console.log('Ready');
 });
 
-
-
 //login
-client.login(process.env.DISCORDJS_BOT_TOKEN)
+
+client.login(process.env.discordtoken)
 
 
 //code is all combined
 
 //since it seems your digging through the code, well.. hi
-
-
 
 client.on('message', message => {
 
@@ -44,9 +40,8 @@ client.on('message', message => {
 
   //MsgLog
   //Name is only for github
-  console.log(`${n}-${g+1}-${b}:${p}:${k}:${m} (${guild.name}) (#${message.channel.name}) ${message.author.tag}: ${message.content}`);
-  
-  
+  if (!message.author.bot) {console.log(`${n}-${g+1}-${b}:${p}:${k}:${m} (${guild.name}) (#${message.channel.name}) ${message.author.tag}: ${message.content}`)};
+ 
   if (message.content === `${PREFIX}help`) {
     message.channel.send('(1.0.1) Hi! im bytebot, im open source and can be hosted anywhere, to customize my prefix change the top line of the code saying const PREFIX = "!" replace the ! with whatever you want!  ')
     }
@@ -59,19 +54,26 @@ client.on('message', message => {
           const member = message.guild.member(user);
           if (member) {
             member
-              .kick('Optional reason that will display in the audit logs')
+              .kick('')
               .then(() => {
-                message.reply(`Successfully kicked ${user.tag}`);
+                message.reply(`Kicked.`);
+                console.log(`${user.tag} was kicked by ${message.author}`);
               })
               .catch(err => {
                 message.reply('I was unable to kick the member');
                 console.error(err);
               });
           } else {
-            message.reply("That user isn't in this guild!");
+            const KickNoGuild = new Discord.MessageEmbed()
+              .setTitle('Cannot kick member')
+              .setDescription('The member was not in the guild.')
+            message.channel.send(KickNoGuild);
           }
         } else {
-          message.reply("You didn't mention the user to kick!");
+          const KickNoMember = new Discord.MessageEmbed()
+              .setTitle('Cannot kick member')
+              .setDescription('The member was not mentioned')
+          message.channel.send(KickNoMember);
         }
       }
       if (message.content === `${PREFIX}shutdown`) {
@@ -95,20 +97,27 @@ client.on('message', message => {
       if (member) {
         member
           .ban({
-            reason: 'They were bad!',
+            reason: '',
           })
           .then(() => {
             message.reply(`Successfully banned ${user.tag}`);
+            console.log(`${user.tag} was banned by ${message.author}`);
           })
           .catch(err => {
             message.reply('I was unable to ban the member');
             console.error(err);
           });
       } else {
-        message.reply("That user isn't in this guild!");
+        const BanMemberNotHere = new Discord.MessageEmbed()
+          .setTitle('Cannot ban member')
+          .setDescription('The member is not here')
+        message.channel.send(BanMemberNotHere);
       }
     } else {
-      message.reply("You didn't mention the user to ban!");
+      const BanNoMember = new Discord.MessageEmbed()
+        .setTitle('Cannot ban member')
+        .setDescription('The member was not mentioned')
+      message.channel.send(BanNoMember);
     }
   }
 });
